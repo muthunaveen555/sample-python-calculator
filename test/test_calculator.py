@@ -28,6 +28,7 @@ class Test(unittest.TestCase):
             result= self.calculator_object.add()
             print(f"{num1} + {num2}:\tCalculated answer= {answer} \tModule answer= {result}")
             self.assertEqual(result, answer)
+
         print("\n Test Finished\n")
 
     def test_sub(self):
@@ -41,6 +42,7 @@ class Test(unittest.TestCase):
             result= self.calculator_object.sub()
             print(f"{num1} - {num2}:\tCalculated answer= {answer} \tModule answer= {result}")
             self.assertEqual(result, answer)
+
         print("\n Test Finished\n")
     
     def test_mul(self):
@@ -54,6 +56,7 @@ class Test(unittest.TestCase):
             result= self.calculator_object.mul()
             print(f"{num1} * {num2}:\tCalculated answer= {answer} \tModule answer= {result}")
             self.assertEqual(result, answer)
+
         print("\n Test finished\n")
     
     def test_div(self):
@@ -67,6 +70,7 @@ class Test(unittest.TestCase):
             result= self.calculator_object.div()
             print(f"{num1} / {num2}:\tCalculated answer= {answer} \tModule answer= {result}")
             self.assertEqual(result, answer)
+
         try:
             print("\nTesting ZeroDivisionError\n")
             num1 = random.randint(10,100000)
@@ -76,6 +80,7 @@ class Test(unittest.TestCase):
             print(f"{num1} / {0}:\tHandled error= {result}")
         except Exception:
             self.fail('\nunexpected exception raised')
+
         print("\n Test finished\n")
 
 if __name__ == '__main__':
