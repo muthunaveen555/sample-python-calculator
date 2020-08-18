@@ -12,7 +12,7 @@ pipeline {
                 sh "pwd"
                 sh "ls -la"
                 sh """
-                    sudo apt-get -y install python3-pip
+                    sudo apt-get -y install python3-pip python3-venv
                     python3 -m venv python-env
                     source python-env/bin/activate
                     pip3 install pylint
