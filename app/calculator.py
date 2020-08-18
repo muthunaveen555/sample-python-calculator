@@ -119,7 +119,8 @@ class Calculator:
         elif self.choice == 5:
             self.view_history()
 
-    def view_history(self):
+    @staticmethod
+    def view_history():
         """ print last 10 calculation history """
 
         with open('history.txt', 'r') as file_in:
@@ -146,7 +147,7 @@ class Calculator:
 
     def write_history(self):
         """ write the calculation history into history file"""
-        
+
         self.make_maxlines()
         data = self.get_history_format()
         with open('history.txt', 'a') as file_append:
