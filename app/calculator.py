@@ -119,7 +119,7 @@ class Calculator:
         elif self.choice == 5:
             self.view_history()
 
-    def view_history():
+    def view_history(self):
         """ print last 10 calculation history """
 
         with open('history.txt', 'r') as file_in:
@@ -137,13 +137,16 @@ class Calculator:
         if len(data) == self.MAX_LINE:
             with open('history.txt', 'w') as file_out:
                 file_out.writelines(data[1:])
-        return
 
     def get_history_format(self):
+        """ return the string format for history file"""
+
         symbol = self.ARITHMETIC_SYMBOL[self.choice-1]
         return f"{self.__number1} {symbol} {self.__number2} = {self.result}"
 
     def write_history(self):
+        """ write the calculation history into history file"""
+        
         self.make_maxlines()
         data = self.get_history_format()
         with open('history.txt', 'a') as file_append:
