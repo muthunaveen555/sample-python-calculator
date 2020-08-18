@@ -115,11 +115,11 @@ class Calculator:
             self.result = self.div()
             print(f"\nOUTPUT: {self.result}")
             self.write_history()
-            
+
         elif self.choice == 5:
             self.view_history()
 
-    def view_history(self):
+    def view_history():
         """ print last 10 calculation history """
 
         with open('history.txt', 'r') as file_in:
@@ -128,30 +128,22 @@ class Calculator:
             print(line)
 
     def make_maxlines(self):
-        """ 
+        """
             Read the history file and checks it contains only 10 lines of history
             if the number of lines become 10 then removes the old history which is first line.
         """
         with open('history.txt', 'r') as file_in:
             data = file_in.read().splitlines(True)
-        if(len(data) == self.MAX_LINE):
+        if len(data) == self.MAX_LINE:
             with open('history.txt', 'w') as file_out:
                 file_out.writelines(data[1:])
-            return
-        else:
-            return
+        return
 
     def get_history_format(self):
-        """
-        get string format for history file
-        """
         symbol = self.ARITHMETIC_SYMBOL[self.choice-1]
         return f"{self.__number1} {symbol} {self.__number2} = {self.result}"
 
     def write_history(self):
-        """
-        write history file with calculations history
-        """
         self.make_maxlines()
         data = self.get_history_format()
         with open('history.txt', 'a') as file_append:
@@ -166,4 +158,3 @@ if __name__ == '__main__':
             calculator_object.do_operation()
     except KeyboardInterrupt:
         print("\nApplication Closed!\n")
-
