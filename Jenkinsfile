@@ -48,7 +48,6 @@ pipeline {
      post {
         always {
             echo 'cleaning workspace..'
-            sh 'deactivate'
             deleteDir() /* clean up our workspace */
             sh 'pwd'
             sh 'ls -la'
