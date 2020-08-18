@@ -4,6 +4,18 @@ pipeline {
 
     stages {
 
+        stage("cleaning ec2 instance") {
+
+            steps{
+                echo 'cleaning the directory..'
+                echo 'before cleaning..'
+                sh 'ssh ubuntu@54.156.89.92 ls -la'
+                sh 'ssh ubuntu@54.156.89.92 rm -rf temp_deploy'
+                echo 'After cleaning..'
+                sh 'ssh ubuntu@54.156.89.92 ls -la'
+            }
+        }
+        
         stage("build") {
 
             steps{
@@ -54,17 +66,6 @@ pipeline {
                     ssh ubuntu@54.156.89.92 python3 temp_deploy/python-virtual-env-pipeline/app/test_in_remote_calculator.py
                     """ /*ssh ubuntu@54.156.89.92 python3 calculator.py*/
                 
-            }
-        }
-        stage("cleaning ec2 instance") {
-
-            steps{
-                echo 'cleaning the directory..'
-                echo 'before cleaning..'
-                sh 'ssh ubuntu@54.156.89.92 ls -la'
-                sh 'ssh ubuntu@54.156.89.92 rm -rf temp_deploy'
-                echo 'After cleaning..'
-                sh 'ssh ubuntu@54.156.89.92 ls -la'
             }
         }
     }
