@@ -33,6 +33,7 @@ pipeline {
             echo 'cleaning workspace..'
             deleteDir() /* clean up our workspace */
             sh 'pwd'
+            sh 'ls -la'
         }
     }
 }
