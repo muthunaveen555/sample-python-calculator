@@ -44,6 +44,7 @@ pipeline {
                 sh 'ssh ubuntu@54.156.89.92 rm -rf temp_deploy'
                 sh 'ssh ubuntu@54.156.89.92 mkdir -p temp_deploy'
                 sh 'ssh ubuntu@54.156.89.92 ls -la'
+                sh 'scp -r /var/lib/jenkins/workspace/python-virtual-env-pipeline ubuntu@54.156.89.92:/home/ubuntu/temp_deploy/'
                 
             }
         }
