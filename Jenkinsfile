@@ -27,14 +27,11 @@ pipeline {
                 
             }
         }
-        stage("cleaning workspace"){
-
-            steps{
-                echo 'cleaning workspace'
-                sh 'rm -rf /var/lib/jenkins/workspace/calculator_pipeline/'
-                sh 'pwd'
-                sh 'ls -la'
-            }
+    }
+    post {
+        always {
+            echo 'cleaning workspace..'
+            deleteDir() /* clean up our workspace */
         }
     }
 }
