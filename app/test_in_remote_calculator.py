@@ -2,9 +2,8 @@
 This is the python application which performs basic calculations between two numbers
 This program runs in loop unless ctrl+c is pressed
 """
-import datetime
 
-class Calculator:
+class TestCalculator:
     """
     Class which contains functions for get user choice of operation, get numbers
     and perform addition, subtraction, multiplication and division
@@ -100,66 +99,66 @@ class Calculator:
             self.get_numbers()
             self.result = self.add()
             print(f"\n{self.__number1} + {self.__number2} = {self.result}")
-            self.write_history()
+            #self.write_history()
 
         elif self.choice == 2:
             self.get_numbers()
             self.result = self.sub()
             print(f"\n{self.__number1} - {self.__number2} = {self.result}")
-            self.write_history()
+            #self.write_history()
 
         elif self.choice == 3:
             self.get_numbers()
             self.result = self.mul()
             print(f"{self.__number1} * {self.__number2} = {self.result}")
-            self.write_history()
+            #self.write_history()
 
         elif self.choice == 4:
             self.get_numbers()
             self.result = self.div()
             print(f"{self.__number1} / {self.__number2} = {self.result}")
-            self.write_history()
+            #self.write_history()
 
-        elif self.choice == 5:
-            self.view_history()
+        #elif self.choice == 5:
+            #self.view_history()
 
-    @staticmethod
-    def view_history():
-        """ print last 10 calculation history """
+    # @staticmethod
+    # def view_history():
+    #     """ print last 10 calculation history """
 
-        with open('history.txt', 'r') as file_in:
-            lines = file_in.read().splitlines(True)
-        for line in lines:
-            print(line)
+    #     with open('history.txt', 'r') as file_in:
+    #         lines = file_in.read().splitlines(True)
+    #     for line in lines:
+    #         print(line)
 
-    def make_maxlines(self):
-        """
-            Read the history file and checks it contains only 10 lines of history
-            if the number of lines become 10 then removes the old history which is first line.
-        """
-        with open('history.txt', 'r') as file_in:
-            data = file_in.read().splitlines(True)
-        if len(data) == self.MAX_LINE:
-            with open('history.txt', 'w') as file_out:
-                file_out.writelines(data[1:])
+    # def make_maxlines(self):
+    #     """
+    #         Read the history file and checks it contains only 10 lines of history
+    #         if the number of lines become 10 then removes the old history which is first line.
+    #     """
+    #     with open('history.txt', 'r') as file_in:
+    #         data = file_in.read().splitlines(True)
+    #     if len(data) == self.MAX_LINE:
+    #         with open('history.txt', 'w') as file_out:
+    #             file_out.writelines(data[1:])
 
-    def get_history_format(self):
-        """ return the string format for history file"""
+    # def get_history_format(self):
+    #     """ return the string format for history file"""
 
-        symbol = self.ARITHMETIC_SYMBOL[self.choice-1]
-        return f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} :{self.__number1} \
-                    {symbol} {self.__number2} = {self.result}"
+    #     symbol = self.ARITHMETIC_SYMBOL[self.choice-1]
+    #     return f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} :{self.__number1} \
+    #                 {symbol} {self.__number2} = {self.result}"
 
-    def write_history(self):
-        """ write the calculation history into history file"""
+    # def write_history(self):
+    #     """ write the calculation history into history file"""
 
-        self.make_maxlines()
-        data = self.get_history_format()
-        with open('history.txt', 'a') as file_append:
-            file_append.write(f'{data}\n')
+    #     self.make_maxlines()
+    #     data = self.get_history_format()
+    #     with open('history.txt', 'a') as file_append:
+    #         file_append.write(f'{data}\n')
 
 if __name__ == '__main__':
-    calculator_object = Calculator()
+    calculator_object = TestCalculator()
     # try:
     #     while True:
             #print("\nPress CTRL+C to terminate the app!\n")
