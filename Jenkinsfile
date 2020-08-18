@@ -27,5 +27,14 @@ pipeline {
                 
             }
         }
+        stage("cleaning workspace"){
+
+            steps{
+                echo 'cleaning workspace'
+                sh 'rm -rf /var/lib/jenkins/workspace/calculator_pipeline'
+		sh 'pwd'
+		sh 'ls -la'
+            }
+        }
     }
 }
