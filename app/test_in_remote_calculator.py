@@ -99,25 +99,25 @@ class Calculator:
         if self.choice == 1:
             self.get_numbers()
             self.result = self.add()
-            print(f"\nOUTPUT: {self.result}")
+            print(f"\n{self.__number1} + {self.__number2} = {self.result}")
             self.write_history()
 
         elif self.choice == 2:
             self.get_numbers()
             self.result = self.sub()
-            print(f"\nOUTPUT: {self.result}")
+            print(f"\n{self.__number1} - {self.__number2} = {self.result}")
             self.write_history()
 
         elif self.choice == 3:
             self.get_numbers()
             self.result = self.mul()
-            print(f"\nOUTPUT: {self.result}")
+            print(f"{self.__number1} * {self.__number2} = {self.result}")
             self.write_history()
 
         elif self.choice == 4:
             self.get_numbers()
             self.result = self.div()
-            print(f"\nOUTPUT: {self.result}")
+            print(f"{self.__number1} / {self.__number2} = {self.result}")
             self.write_history()
 
         elif self.choice == 5:
