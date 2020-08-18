@@ -49,8 +49,8 @@ pipeline {
                 sh 'ssh ubuntu@54.156.89.92 touch temp_deploy/python-virtual-env-pipeline/app/history.txt'
                 sh """
                     ssh ubuntu@54.156.89.92 cd temp_deploy/python-virtual-env-pipeline/app/
-                    ssh ubuntu@54.156.89.92 python3 calculator.py
-                    """
+                    ssh ubuntu@54.156.89.92 ls -la
+                    """ /*ssh ubuntu@54.156.89.92 python3 calculator.py*/
                 
             }
         }
