@@ -4,7 +4,7 @@ This program runs in loop unless ctrl+c is pressed
 """
 import datetime
 
-class Calculator:
+class TestCalculator:
     """
     Class which contains functions for get user choice of operation, get numbers
     and perform addition, subtraction, multiplication and division
@@ -159,7 +159,7 @@ class Calculator:
     #         file_append.write(f'{data}\n')
 
 if __name__ == '__main__':
-    calculator_object = Calculator()
+    calculator_object = TestCalculator()
     # try:
     #     while True:
             #print("\nPress CTRL+C to terminate the app!\n")
