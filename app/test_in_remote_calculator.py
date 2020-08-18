@@ -159,6 +159,8 @@ class TestCalculator:
 
 if __name__ == '__main__':
     calculator_object = TestCalculator()
+    print("Test run:")
+    print("ADDITION")
     # try:
     #     while True:
             #print("\nPress CTRL+C to terminate the app!\n")
