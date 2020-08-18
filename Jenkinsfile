@@ -120,7 +120,7 @@ class Calculator:
             print(f"{self.__number1} / {self.__number2} = {self.result}")
             #self.write_history()
 
-        elif self.choice == 5:
+        #elif self.choice == 5:
             #self.view_history()
 
     # @staticmethod
@@ -134,9 +134,9 @@ class Calculator:
 
     # def make_maxlines(self):
     #     """
-             Read the history file and checks it contains only 10 lines of history
-             if the number of lines become 10 then removes the old history which is first line.
-            """
+    #         Read the history file and checks it contains only 10 lines of history
+    #         if the number of lines become 10 then removes the old history which is first line.
+    #     """
     #     with open('history.txt', 'r') as file_in:
     #         data = file_in.read().splitlines(True)
     #     if len(data) == self.MAX_LINE:
