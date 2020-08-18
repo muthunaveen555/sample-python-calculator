@@ -42,7 +42,8 @@ pipeline {
             steps{
                 echo 'Deploying the application..'
                 sh 'ssh ubuntu@54.156.89.92 rm -rf /temp_deploy'
-                sh 'ssh ssh ubuntu@54.156.89.92 ls -la'
+                sh 'ssh ubuntu@54.156.89.92 mkdir -p /temp_deploy'
+                sh 'ssh ubuntu@54.156.89.92 ls -la'
                 
             }
         }
