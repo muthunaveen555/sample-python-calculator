@@ -13,6 +13,8 @@ pipeline {
                 sh "ls -la"
                 sh """
                     sudo apt-get -y install python3-pip python3-venv
+                    python3 -m venv python-env
+                    . python-env/bin/activate
                     pip3 install pylint
                     """
             }
@@ -46,6 +48,7 @@ pipeline {
      post {
         always {
             echo 'cleaning workspace..'
+            sh 'deactivate'
             deleteDir() /* clean up our workspace */
             sh 'pwd'
             sh 'ls -la'
