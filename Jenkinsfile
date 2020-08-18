@@ -13,6 +13,7 @@ pipeline {
                 sh "ls -la"
                 sh """
                     sudo apt-get -y install python3-pip python3-venv ssh
+                    sudo touch app/history.txt
                     python3 -m venv python-env
                     . python-env/bin/activate
                     pip3 install pylint
@@ -45,6 +46,7 @@ pipeline {
                 sh 'ssh ubuntu@54.156.89.92 mkdir -p temp_deploy'
                 sh 'ssh ubuntu@54.156.89.92 ls -la'
                 sh 'scp -r /var/lib/jenkins/workspace/python-virtual-env-pipeline ubuntu@54.156.89.92:/home/ubuntu/temp_deploy/'
+                sh 'ssh ubuntu@54.156.89.92 touch temp_deploy/python-virtual-env-pipeline/app/history.txt'
                 
             }
         }
