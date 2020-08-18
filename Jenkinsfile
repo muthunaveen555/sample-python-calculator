@@ -12,7 +12,6 @@ pipeline {
                 sh "pwd"
                 sh "ls -la"
                 sh """
-                    sudo apt-get update
                     sudo apt-get -y install python3-pip
                     sudo pip3 install virtualenv
                     sudo virtualenv python-env
@@ -27,7 +26,7 @@ pipeline {
             steps{
                 echo 'Linting the application..'
                 sh 'python3 -m pylint app/calculator.py'
-                
+
             }
         }
 
