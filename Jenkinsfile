@@ -12,11 +12,11 @@ pipeline {
                 sh "pwd"
                 sh "ls -la"
                 sh """
-                    sudo apt-get -y install python3-pip
-                    sudo pip3 install virtualenv
-                    sudo virtualenv python-env
-                    sudo source python-env/bin/activate
-                    sudo pip3 install pylint
+                    apt-get -y install python3-pip
+                    pip3 install virtualenv
+                    virtualenv python-env
+                    source python-env/bin/activate
+                    pip3 install pylint
                     """
             }
         }
