@@ -49,6 +49,9 @@ pipeline {
                 echo 'After moving files into ec2 instance'
                 sh 'ssh ubuntu@54.156.89.92 ls -la'
                 sh 'ssh ubuntu@54.156.89.92 touch temp_deploy/python-virtual-env-pipeline/app/history.txt'
+                sh 'ssh ubuntu@54.156.89.92 sudo apt-get -y install python3-pip python3-venv'
+                sh 'ssh ubuntu@54.156.89.92 python3 -m venv temp_deploy/python-virtual-env-pipeline/python-env'
+                sh 'ssh ubuntu@54.156.89.92 . temp_deploy/python-virtual-env-pipeline/python-env/bin/activate'
                 echo 'Running test application..'
                 sh """
                     ssh ubuntu@54.156.89.92 python3 temp_deploy/python-virtual-env-pipeline/app/test_in_remote_calculator.py
