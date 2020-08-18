@@ -144,7 +144,7 @@ class Calculator:
         """ return the string format for history file"""
     
         symbol = self.ARITHMETIC_SYMBOL[self.choice-1]
-        return f"{datetime.datetime.now()} :{self.__number1} {symbol} {self.__number2} = {self.result}"
+        return f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} :{self.__number1} {symbol} {self.__number2} = {self.result}"
 
     def write_history(self):
         """ write the calculation history into history file"""
