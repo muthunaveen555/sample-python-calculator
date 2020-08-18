@@ -13,9 +13,6 @@ pipeline {
                 sh "ls -la"
                 sh """
                     sudo apt-get -y install python3-pip
-                    pip3 install virtualenv
-                    virtualenv python-env
-                    source python-env/bin/activate
                     pip3 install pylint
                     """
             }
@@ -44,6 +41,14 @@ pipeline {
                 echo 'Deploying the application..'
                 
             }
+        }
+    }
+     post {
+        always {
+            echo 'cleaning workspace..'
+            deleteDir() /* clean up our workspace */
+            sh 'pwd'
+            sh 'ls -la'
         }
     }
 }
