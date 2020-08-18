@@ -48,8 +48,7 @@ pipeline {
                 sh 'scp -r /var/lib/jenkins/workspace/python-virtual-env-pipeline ubuntu@54.156.89.92:/home/ubuntu/temp_deploy/'
                 sh 'ssh ubuntu@54.156.89.92 touch temp_deploy/python-virtual-env-pipeline/app/history.txt'
                 sh """
-                    ssh ubuntu@54.156.89.92 cd temp_deploy/python-virtual-env-pipeline/app/
-                    ssh ubuntu@54.156.89.92 ls -la
+                    ssh ubuntu@54.156.89.92 python3 temp_deploy/python-virtual-env-pipeline/app/calculator.py
                     """ /*ssh ubuntu@54.156.89.92 python3 calculator.py*/
                 
             }
