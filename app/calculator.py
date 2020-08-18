@@ -2,6 +2,7 @@
 This is the python application which performs basic calculations between two numbers
 This program runs in loop unless ctrl+c is pressed
 """
+import datetime
 
 class Calculator:
     """
@@ -141,9 +142,9 @@ class Calculator:
 
     def get_history_format(self):
         """ return the string format for history file"""
-
+    
         symbol = self.ARITHMETIC_SYMBOL[self.choice-1]
-        return f"{self.__number1} {symbol} {self.__number2} = {self.result}"
+        return f"{datetime.datetime.now()} :{self.__number1} {symbol} {self.__number2} = {self.result}"
 
     def write_history(self):
         """ write the calculation history into history file"""
