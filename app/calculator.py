@@ -14,7 +14,7 @@ class Calculator:
 
     #list which contains arithmetic operations name which is used in print statemen
     OPERATIONS = ["ADDITION", "SUBTRACTION", "MULTIPLICATION", "DIVISION", "HISTORY"]
-    ARITHMETIC_SYMBOL = ["+","-","*","/"]
+    ARITHMETIC_SYMBOL = ["+", "-", "*", "/"]
 
     #numbers used for caluclations
     __number1 = 0
@@ -122,7 +122,7 @@ class Calculator:
     def view_history(self):
         """ print last 10 calculation history """
 
-        with open('history.txt','r') as file_in:
+        with open('history.txt', 'r') as file_in:
             lines = file_in.read().splitlines(True)
         for line in lines:
             print(line)
@@ -132,7 +132,7 @@ class Calculator:
             Read the history file and checks it contains only 10 lines of history
             if the number of lines become 10 then removes the old history which is first line.
         """
-        with open('history.txt','r') as file_in:
+        with open('history.txt', 'r') as file_in:
             data = file_in.read().splitlines(True)
         if(len(data) == self.MAX_LINE):
             with open('history.txt', 'w') as file_out:
@@ -142,13 +142,19 @@ class Calculator:
             return
 
     def get_history_format(self):
+        """
+        get string format for history file
+        """
         symbol = self.ARITHMETIC_SYMBOL[self.choice-1]
         return f"{self.__number1} {symbol} {self.__number2} = {self.result}"
 
     def write_history(self):
+        """
+        write history file with calculations history
+        """
         self.make_maxlines()
         data = self.get_history_format()
-        with open('history.txt','a') as file_append:
+        with open('history.txt', 'a') as file_append:
             file_append.write(f'{data}\n')
 
 if __name__ == '__main__':
