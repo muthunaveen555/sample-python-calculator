@@ -9,15 +9,22 @@ class Calculator:
     and perform addition, subtraction, multiplication and division
     """
     #choice of the operation:
-    #1-Addition, 2-Subtraction, 3-Multiplication, 4-Division
+    #1-Addition, 2-Subtraction, 3-Multiplication, 4-Division, 5-View-history
     choice = -1
 
     #list which contains arithmetic operations name which is used in print statemen
-    operations = ["ADDITION", "SUBTRACTION", "MULTIPLICATION", "DIVISION"]
+    OPERATIONS = ["ADDITION", "SUBTRACTION", "MULTIPLICATION", "DIVISION", "HISTORY"]
+    ARITHMETIC_SYMBOL = ["+","-","*","/"]
 
     #numbers used for caluclations
-    number1 = 0
-    number2 = 0
+    __number1 = 0
+    __number2 = 0
+
+    #current_result
+    result = 0
+
+    #constant  number of lines in history file
+    MAX_LINE = 10
 
     def get_choice(self):
         """
@@ -28,15 +35,21 @@ class Calculator:
         while True:
             try:
                 self.choice = int(input("\n1.Addition\n2.Subtraction \
-                            \n3.Multiplication\n4.Division\nYour choice: "))
+                            \n3.Multiplication\n4.Division\n5.View history\nYour choice: "))
             except ValueError:
                 print("\nEnter valid number!")
                 continue
-            if self.choice > 4 or self.choice < 1:
-                print("\nEnter number between 1 and 4!")
+            if self.choice > 5 or self.choice < 1:
+                print("\nEnter number between 1 and 5!")
                 continue
-            print(f"\n{self.operations[self.choice-1]}")
+            print(f"\n{self.OPERATIONS[self.choice-1]}")
             break
+
+    def set_numbers(self, num1, num2):
+        """setter function for numbers """
+
+        self.__number1 = num1
+        self.__number2 = num2
 
     def get_numbers(self):
         """
@@ -46,8 +59,8 @@ class Calculator:
 
         while True:
             try:
-                self.number1 = float(input("\nEnter first number:"))
-                self.number2 = float(input("Enter Second number:"))
+                self.__number1 = float(input("\nEnter first number:"))
+                self.__number2 = float(input("Enter Second number:"))
             except ValueError:
                 print("Sorry, Enter valid number")
                 #Return to the start of the loop and prompt user input again
@@ -58,20 +71,20 @@ class Calculator:
 
     def add(self):
         """ return sum of two numbers"""
-        return self.number1+self.number2
+        return self.__number1+self.__number2
 
     def sub(self):
         """ return difference of two numbers"""
-        return self.number1-self.number2
+        return self.__number1-self.__number2
 
     def mul(self):
         """ return multiplication of two numbers"""
-        return self.number1*self.number2
+        return self.__number1*self.__number2
 
     def div(self):
         """ return division of two numbers and also checks ZeroDivisionError"""
         try:
-            result = self.number1/self.number2
+            result = self.__number1/self.__number2
         except ZeroDivisionError as error:
             return error
         return result
@@ -80,17 +93,63 @@ class Calculator:
         """ performs the operation based on user choice """
 
         if self.choice == 1:
-            print(f"\nOUTPUT: {calculator_object.add()}")
+            self.get_numbers()
+            self.result = self.add()
+            print(f"\nOUTPUT: {self.result}")
+            self.write_history()
 
         elif self.choice == 2:
-            print(f"\nOUTPUT: {calculator_object.sub()}")
+            self.get_numbers()
+            self.result = self.sub()
+            print(f"\nOUTPUT: {self.result}")
+            self.write_history()
 
         elif self.choice == 3:
-            print(f"\nOUTPUT: {calculator_object.mul()}")
+            self.get_numbers()
+            self.result = self.mul()
+            print(f"\nOUTPUT: {self.result}")
+            self.write_history()
 
         elif self.choice == 4:
-            print(f"\nOUTPUT: {calculator_object.div()}")
+            self.get_numbers()
+            self.result = self.div()
+            print(f"\nOUTPUT: {self.result}")
+            self.write_history()
+            
+        elif self.choice == 5:
+            self.view_history()
 
+    def view_history(self):
+        """ print last 10 calculation history """
+
+        with open('history.txt','r') as file_in:
+            lines = file_in.read().splitlines(True)
+        for line in lines:
+            print(line)
+
+    def make_maxlines(self):
+        """ 
+            Read the history file and checks it contains only 10 lines of history
+            if the number of lines become 10 then removes the old history which is first line.
+        """
+        with open('history.txt','r') as file_in:
+            data = file_in.read().splitlines(True)
+        if(len(data) == self.MAX_LINE):
+            with open('history.txt', 'w') as file_out:
+                file_out.writelines(data[1:])
+            return
+        else:
+            return
+
+    def get_history_format(self):
+        symbol = self.ARITHMETIC_SYMBOL[self.choice-1]
+        return f"{self.__number1} {symbol} {self.__number2} = {self.result}"
+
+    def write_history(self):
+        self.make_maxlines()
+        data = self.get_history_format()
+        with open('history.txt','a') as file_append:
+            file_append.write(f'{data}\n')
 
 if __name__ == '__main__':
     calculator_object = Calculator()
@@ -98,7 +157,7 @@ if __name__ == '__main__':
         while True:
             print("\nPress CTRL+C to terminate the app!\n")
             calculator_object.get_choice()
-            calculator_object.get_numbers()
             calculator_object.do_operation()
     except KeyboardInterrupt:
         print("\nApplication Closed!\n")
+
