@@ -7,6 +7,8 @@ pipeline {
         stage("cleaning ec2 instance") {
 
             steps{
+                echo ''
+                echo ''
                 echo 'cleaning the directory..'
                 echo 'before cleaning..'
                 sh 'ssh ubuntu@54.156.89.92 ls -la'
@@ -19,6 +21,8 @@ pipeline {
         stage("build") {
 
             steps{
+                echo ''
+                echo ''
                 echo 'building application..'
                 echo 'creating virtual environment'
                 sh "pwd"
@@ -35,6 +39,8 @@ pipeline {
         stage("linting-score") {
 
             steps{
+                echo ''
+                echo ''
                 echo 'Linting the application..'
                 sh 'python3 -m pylint app/calculator.py'
 
@@ -44,6 +50,8 @@ pipeline {
         stage("test") {
 
             steps{
+                echo ''
+                echo ''
                 echo 'testing the application..'
                 sh 'python3 -m unittest discover -v'
                 
@@ -52,6 +60,8 @@ pipeline {
         stage("deploy") {
 
             steps{
+                echo ''
+                echo ''
                 echo 'Deploying the application..'
                 echo 'removing previous deployed directory..'
                 sh 'ssh ubuntu@54.156.89.92 rm -rf temp_deploy'
@@ -61,6 +71,8 @@ pipeline {
                 echo 'After moving files into ec2 instance'
                 sh 'ssh ubuntu@54.156.89.92 ls -la'
                 sh 'ssh ubuntu@54.156.89.92 touch temp_deploy/python-virtual-env-pipeline/app/history.txt'
+                echo ''
+                echo ''
                 echo 'Running test application..'
                 sh """
                     ssh ubuntu@54.156.89.92 python3 temp_deploy/python-virtual-env-pipeline/app/test_in_remote_calculator.py
@@ -71,6 +83,8 @@ pipeline {
     }
      post {
         always {
+            echo ''
+            echo ''
             echo 'cleaning workspace..'
             echo 'Current workspace directory'
             sh 'pwd'
